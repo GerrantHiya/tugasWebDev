@@ -8,12 +8,12 @@ if (isset($_POST['update_note'])) {
 
     $update_query = "UPDATE catatan 
     SET title = '$title', content = '$content', last_update = CURRENT_DATE 
-    WHERE no = '$no';";
+    WHERE primKey = '$no';";
     $execution = mysqli_query($dbc, $update_query);
 
     if ($execution) {
-        echo "Berhasil Update<br>
-        <input type='button' value='BACK' href='noteDashboard.php' class='btn btn-secondary'>";
-        header("location:noteUpdateDashboard.php");
+        // echo "Berhasil Update<br>
+        // <input type='button' value='BACK' href='noteDashboard.php' class='btn btn-secondary'>";
+        header("location:noteDashboard.php");
     }
 }

@@ -82,7 +82,7 @@ include 'connector.php';
                         <th scope="col">No</th>
                         <th scope="col">Kode Destinasi</th>
                         <th scope="col">Nama Destinasi</th>
-                        <th scope="col">Kode Kategori</th>
+                        <th scope="col">Nama Kategori</th>
                         <th scope="col">Foto</th>
 
                         <th colspan="3" style="text-align: center">Aksi</th>
@@ -95,10 +95,12 @@ include 'connector.php';
                     <?php
                     if (isset($_POST['kirim_nama'])) {
                         $search_nama = $_POST['search_nama'];
-                        $sql_nama = "SELECT * FROM destinasi WHERE destinasiNAMA LIKE '%$search_nama' OR destinasiNAMA LIKE '$search_nama%' OR destinasiNAMA LIKE '%$search_nama%'";
+                        $sql_nama = "SELECT * FROM destinasi d JOIN kategoriwisata k ON d.kategoriKODE = k.kategoriKODE
+                        WHERE d.destinasiNAMA LIKE '%$search_nama' OR d.destinasiNAMA LIKE '$search_nama%' OR d.destinasiNAMA LIKE '%$search_nama%'";
                         $query = mysqli_query($dbc, $sql_nama);
                     } else {
-                        $query = mysqli_query($dbc, "select * from destinasi");
+                        $query_semua = "SELECT * FROM destinasi d JOIN kategoriwisata k ON d.kategoriKODE = k.kategoriKODE";
+                        $query = mysqli_query($dbc, $query_semua);
                     }
 
                     $nomor = 1;
@@ -108,8 +110,8 @@ include 'connector.php';
                             <td><?php echo $nomor; ?></td>
                             <td><?php echo $row['destinasiKODE']; ?></td>
                             <td><?php echo $row['destinasiNAMA']; ?></td>
-                            <td><?php echo $row['kategoriKODE']; ?></td>
-                            <td><img src=<?php echo "images/" . $row['fileFoto'] ?> width="72px" height="46px"></td>
+                            <td><?php echo $row['kategoriNAMA']; ?></td>
+                            <td><img src=<?php echo "images/" . $row['fileFoto'] ?> width="72px" height="100px"></td>
 
                             <td width="5px">
                             <td width="5px"><a href=<?php

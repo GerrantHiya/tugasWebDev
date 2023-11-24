@@ -4,7 +4,7 @@ include 'connector.php';
 $user = $_SESSION['username_'];
 
 $select_all_notes_query =
-    "SELECT primKey, username_, last_update, title, CONCAT(LEFT(content, 20), IF(CHAR_LENGTH(content) > 20, '...', '')) AS content, noteStatus FROM catatan WHERE username_ = '$user' AND noteStatus = 0
+    "SELECT primKey, username_, last_update, title, CONCAT(LEFT(content, 20), IF(CHAR_LENGTH(content) > 20, '...', '')) AS content, noteStatus FROM catatan WHERE username_ = '$user' AND noteStatus = 1
             ORDER BY last_update DESC;";
 $execution = mysqli_query($dbc, $select_all_notes_query);
 
@@ -32,12 +32,6 @@ if (mysqli_num_rows($execution) > 0) {
                     <div class="col-sm-10 row">
                         <h5 class="mb-0">
                             <div class="col">
-                                <a href=<?php echo "noteForm_add2archive.php?kode=" . $data['primKey']; ?> class="mr-3" style="text-decoration: none;" title="move to archive"> <!-- TANDAI SELESAI -->
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check2-square" viewBox="0 0 16 16">
-                                        <path d="M3 14.5A1.5 1.5 0 0 1 1.5 13V3A1.5 1.5 0 0 1 3 1.5h8a.5.5 0 0 1 0 1H3a.5.5 0 0 0-.5.5v10a.5.5 0 0 0 .5.5h10a.5.5 0 0 0 .5-.5V8a.5.5 0 0 1 1 0v5a1.5 1.5 0 0 1-1.5 1.5H3z" />
-                                        <path d="m8.354 10.354 7-7a.5.5 0 0 0-.708-.708L8 9.293 5.354 6.646a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0z" />
-                                    </svg>
-                                </a>
                                 <a href=<?php echo "noteForm_delete.php?kode=" . $data['primKey']; ?> style="text-decoration: none;"> <!-- HAPUS -->
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eraser-fill text-danger" viewBox="0 0 16 16">
                                         <path d="M8.086 2.207a2 2 0 0 1 2.828 0l3.879 3.879a2 2 0 0 1 0 2.828l-5.5 5.5A2 2 0 0 1 7.879 15H5.12a2 2 0 0 1-1.414-.586l-2.5-2.5a2 2 0 0 1 0-2.828l6.879-6.879zm.66 11.34L3.453 8.254 1.914 9.793a1 1 0 0 0 0 1.414l2.5 2.5a1 1 0 0 0 .707.293H7.88a1 1 0 0 0 .707-.293l.16-.16z" />

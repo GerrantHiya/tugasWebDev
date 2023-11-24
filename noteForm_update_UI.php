@@ -50,7 +50,7 @@
                                                                                                                                                             include 'connector.php';
 
                                                                                                                                                             $kode = $_GET['kode'];
-                                                                                                                                                            $getDate_query = "SELECT * FROM catatan WHERE no = '$kode'";
+                                                                                                                                                            $getDate_query = "SELECT * FROM catatan WHERE primKey = '$kode'";
                                                                                                                                                             $getDate_execute = mysqli_query($dbc, $getDate_query);
 
                                                                                                                                                             $row = mysqli_fetch_assoc($getDate_execute);
@@ -63,9 +63,8 @@
             <div class="col-sm-1"></div>
             <div class="col-sm-10">
                 <!-- CONTENT -->
-                <textarea name="content" cols="120" rows="10" class="multiline_" placeholder="Write your notes here...">
-                <?php echo $row['content']; ?>
-                </textarea>
+                <textarea name="content" cols="120" rows="10" class="multiline_" placeholder="Write your notes here..."><?php echo $row['content']; ?></textarea>
+                <input type="hidden" name="no" value=<?php echo $row['primKey'] ?>>
             </div>
             <div class="col-sm-1">
                 <input type="submit" value="Save" name="update_note" class="btn btn-success">

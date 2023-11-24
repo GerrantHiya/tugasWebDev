@@ -24,7 +24,7 @@ if (isset($_SESSION['IsLoggedIn']) && $_SESSION['IsLoggedIn'] === true) {
                     <ol class="breadcrumb mb-4">
                         <li class="breadcrumb-item active"></li>
                     </ol>
-                    <?php //include 'addOn/board.php';
+                    <?php include 'addOn/board.php';
                     ?>
                 </div>
             </main>

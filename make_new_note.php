@@ -8,9 +8,9 @@ if (isset($_POST['simpan_baru'])) {
     $content = htmlspecialchars($_POST['content']);
 
     $insertNew_query = "INSERT INTO catatan (username_, title, content, noteStatus)
-    VALUES ('gHiya','$title','$content','0')";
+    VALUES ('$username','$title','$content','0')";
     $result = mysqli_query($dbc, $insertNew_query);
     if ($result) {
-        header("LOCATION:noteForm_main.php");
+        header("LOCATION:noteDashboard.php");
     }
 }
